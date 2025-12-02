@@ -289,13 +289,15 @@ AndiOverlay.prototype.overlayLabelTags = function(){
 //This function will update the info in the Active Element Inspection.
 //Should be called after the mouse hover or focus in event.
 AndiModule.inspect = function(element){
-	andiBar.prepareActiveElementInspection(element);
-	
 	var elementData = $(element).data("andi508");
-	var addOnProps = AndiData.getAddOnProps(element, elementData);
-	
-	andiBar.displayOutput(elementData, element, addOnProps);
-	andiBar.displayTable(elementData, element, addOnProps);
+	if (elementData) {
+		andiBar.prepareActiveElementInspection(element);
+
+		var addOnProps = AndiData.getAddOnProps(element, elementData);
+
+		andiBar.displayOutput(elementData, element, addOnProps);
+		andiBar.displayTable(elementData, element, addOnProps);
+	}
 };
 
 fANDI.analyze();

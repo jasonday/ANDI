@@ -8,7 +8,7 @@ var andiVersionNumber = "29.2.2";
 // ANDI CONFIG: //
 //==============//
 //URLs
-var host_url = "https://work.jasonbyday.com/ANDI/";
+var host_url = "https://www.ssa.gov/accessibility/andi/";
 var help_url = host_url+"help/";
 var icons_url = host_url+"icons/";
 
