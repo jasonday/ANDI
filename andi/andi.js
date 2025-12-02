@@ -8,7 +8,7 @@ var andiVersionNumber = "29.2.2";
 // ANDI CONFIG: //
 //==============//
 //URLs
-var host_url = "http://work.jasonbyday.com/ANDI/andi.js";
+var host_url = "http://work.jasonbyday.com/ANDI/";
 var help_url = host_url+"help/";
 var icons_url = host_url+"icons/";
 
