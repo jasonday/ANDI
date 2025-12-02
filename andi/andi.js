@@ -4048,12 +4048,38 @@ function AlertButton(label, id, clickLogic, overlayIcon){
 
 TestPageData.allVisibleElements = undefined;
 TestPageData.allElements = undefined;
+//This function recursively traverses the DOM and shadow DOMs to find all elements.
+function findAllElementsWithShadows(root) {
+    if (!root) {
+        return [];
+    }
+    const allElements = [];
+
+    function getElements(element) {
+        // Add the current element to the list
+        allElements.push(element);
+
+        // If the element has a shadow root, traverse it
+        if (element.shadowRoot) {
+            Array.from(element.shadowRoot.children).forEach(getElements);
+        }
+
+        // Traverse the children of the current element
+        Array.from(element.children).forEach(getElements);
+    }
+
+    // Start traversal from the root's children
+    Array.from(root.children).forEach(getElements);
+
+    return allElements;
+}
+
 //This class is used to store temporary variables for the test page
 function TestPageData(){
 	//Creates the alert groups
 	AndiAlerter.alertGroups = andiAlerter.createAlertGroups();
 
-	TestPageData.allElements = $("#ANDI508-testPage *");
+	TestPageData.allElements = findAllElementsWithShadows(document.getElementById("ANDI508-testPage"));
 
 	//all the visible elements or elements within a canvas on the test page
 	TestPageData.allVisibleElements = $(TestPageData.allElements).filter(":shown,canvas *");
